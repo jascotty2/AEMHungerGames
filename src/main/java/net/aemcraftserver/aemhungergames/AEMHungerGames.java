@@ -14,6 +14,7 @@ public class AEMHungerGames extends JavaPlugin{
 		logger.log(Level.INFO, "[AEMHungerGames] Enabled.");
 	}
 
+	@Override
 	public void onDisable(){
 		logger.log(Level.INFO, "[AEMHungerGames] Disabled.");
 	}
