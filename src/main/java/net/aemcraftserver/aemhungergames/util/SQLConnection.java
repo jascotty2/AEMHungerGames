@@ -2,7 +2,9 @@ package main.java.net.aemcraftserver.aemhungergames.util;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 public class SQLConnection{
 	private Connection c;
@@ -29,12 +31,29 @@ public class SQLConnection{
 			Class.forName("com.mysql.jdbc.Driver");
 			this.c = DriverManager.getConnection("jdbc:mysql://"+host+":"+String.valueOf(port)+"/"+database, un, pw);
 			return true;
+		}catch(SQLException e){
+			e.printStackTrace();
+			return false;
+		}catch(ClassNotFoundException e){
+			e.printStackTrace();
+			return false;
+		}
+	}
+	
+	public PreparedStatement statement(String q){
+		try {
+			return c.prepareStatement(q, Statement.RETURN_GENERATED_KEYS);
 		} catch (SQLException e) {
 			e.printStackTrace();
-			return false;
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-			return false;
+			return null;
+		}
+	}
+	
+	public Statement statement(){
+		try{
+			return this.c.createStatement();
+		}catch(SQLException e){
+			return null;
 		}
 	}
 }
