@@ -1,21 +1,27 @@
 package main.java.net.aemcraftserver.aemhungergames;
 
-import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import org.bukkit.plugin.PluginDescriptionFile;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class AEMHungerGames extends JavaPlugin{
-	Logger logger;
-
-	@Override
-	public void onEnable(){
-		logger = Logger.getLogger("Minecraft");
-		logger.log(Level.INFO, "[AEMHungerGames] Enabled.");
+	Logger log = Logger.getLogger("Minecraft");
+	PluginDescriptionFile pdfile;
+	
+	/**
+	 * Shows a message in the console with a prefix tag
+	 * @param msg The message to be displayed on the console
+	 */
+	public void lm(String msg){
+		log.info("[BlockControl] "+msg);
 	}
-
 	@Override
-	public void onDisable(){
-		logger.log(Level.INFO, "[AEMHungerGames] Disabled.");
+	public void onEnable() {
+		lm("Enabled.");
+	}
+	@Override
+	public void onDisable() {
+		lm("Enabled.");
 	}
 }
