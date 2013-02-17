@@ -1,0 +1,5 @@
+name: AEMHungerGames
+version: 0.0.1
+main: main.java.aemcraftserver.aemhungergames.AEMHungerGames
+author: TheLunarFrog
+authors: [th3controller, AlexanderMorrison]
