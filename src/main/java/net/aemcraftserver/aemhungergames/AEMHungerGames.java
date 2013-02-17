@@ -13,21 +13,23 @@ public class AEMHungerGames extends JavaPlugin{
 	PluginDescriptionFile pdfile;
 	GameStatus status;
 	SQLConnection connection;
-	
+
+	@Override
+	public void onEnable(){
+		connection = new SQLConnection();
+		lm("Version "+pdfile.getVersion()+" enabled.");
+	}
+
+	@Override
+	public void onDisable(){
+		lm("Disabled.");
+	}
+
 	/**
 	 * Shows a message in the console with a prefix tag
 	 * @param msg The message to be displayed on the console
 	 */
 	public void lm(String msg){
 		log.info("[AEMHungerGames] "+msg);
-	}
-	@Override
-	public void onEnable(){
-		connection = new SQLConnection();
-		lm("Version "+pdfile.getVersion()+" enabled.");
-	}
-	@Override
-	public void onDisable(){
-		lm("Enabled.");
 	}
 }
