@@ -1,4 +1,6 @@
 package main.java.net.aemcraftserver.aemhungergames;
 
-public class AEMHungerGames{
+import org.bukkit.plugin.java.JavaPlugin;
+
+public class AEMHungerGames extends JavaPlugin{
 }
