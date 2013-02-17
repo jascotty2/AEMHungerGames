@@ -14,7 +14,7 @@ public class AEMHungerGames extends JavaPlugin{
 	 * @param msg The message to be displayed on the console
 	 */
 	public void lm(String msg){
-		log.info("[BlockControl] "+msg);
+		log.info("[AEMHungerGames] "+msg);
 	}
 	@Override
 	public void onEnable() {
