@@ -10,6 +10,7 @@ public class AEMHungerGames extends JavaPlugin{
 	
 	@Override
 	public void onEnable(){
+		log = Logger.getLogger("Minecraft");
 		log.log(Level.INFO, "[AEMHungerGames] Enabled.");
 	}
 	public void onDisable(){
