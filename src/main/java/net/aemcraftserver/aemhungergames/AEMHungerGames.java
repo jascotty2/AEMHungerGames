@@ -6,14 +6,15 @@ import java.util.logging.Logger;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class AEMHungerGames extends JavaPlugin{
-	Logger log;
-	
+	Logger logger;
+
 	@Override
 	public void onEnable(){
-		log = Logger.getLogger("Minecraft");
-		log.log(Level.INFO, "[AEMHungerGames] Enabled.");
+		logger = Logger.getLogger("Minecraft");
+		logger.log(Level.INFO, "[AEMHungerGames] Enabled.");
 	}
+
 	public void onDisable(){
-		log.log(Level.INFO, "[AEMHungerGames] Disabled.");
+		logger.log(Level.INFO, "[AEMHungerGames] Disabled.");
 	}
 }
