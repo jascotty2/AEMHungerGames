@@ -4,13 +4,14 @@ import java.util.logging.Logger;
 
 import main.java.net.aemcraftserver.aemhungergames.commands.JoinCommand;
 import main.java.net.aemcraftserver.aemhungergames.util.GameStatus;
+import main.java.net.aemcraftserver.aemhungergames.util.RegionConfig;
 import main.java.net.aemcraftserver.aemhungergames.util.SQLConnection;
 
 import org.bukkit.plugin.PluginDescriptionFile;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class AEMHungerGames extends JavaPlugin{
-	protected Logger log = Logger.getLogger("Minecraft");
+	protected static Logger log = Logger.getLogger("Minecraft");
 	protected PluginDescriptionFile pdfile;
 	protected GameStatus status;
 	protected SQLConnection connection;
@@ -20,6 +21,8 @@ public class AEMHungerGames extends JavaPlugin{
 	public void onEnable(){
 		connection = new SQLConnection();
 		getServer().getPluginCommand("join").setExecutor(new JoinCommand());
+		RegionConfig.createConfig();
+		
 		lm("Version "+pdfile.getVersion()+" enabled.");
 	}
 
@@ -32,7 +35,7 @@ public class AEMHungerGames extends JavaPlugin{
 	 * Shows a message in the console with a prefix tag
 	 * @param msg The message to be displayed on the console
 	 */
-	public void lm(String msg){
+	public static void lm(String msg){
 		log.info("[AEMHungerGames] "+msg);
 	}
 	
