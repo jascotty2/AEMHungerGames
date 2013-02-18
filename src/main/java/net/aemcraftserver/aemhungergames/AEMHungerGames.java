@@ -2,6 +2,7 @@ package main.java.net.aemcraftserver.aemhungergames;
 
 import java.util.logging.Logger;
 
+import main.java.net.aemcraftserver.aemhungergames.commands.JoinCommand;
 import main.java.net.aemcraftserver.aemhungergames.util.GameStatus;
 import main.java.net.aemcraftserver.aemhungergames.util.SQLConnection;
 
@@ -9,14 +10,16 @@ import org.bukkit.plugin.PluginDescriptionFile;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class AEMHungerGames extends JavaPlugin{
-	Logger log = Logger.getLogger("Minecraft");
-	PluginDescriptionFile pdfile;
-	GameStatus status;
-	SQLConnection connection;
+	protected Logger log = Logger.getLogger("Minecraft");
+	protected PluginDescriptionFile pdfile;
+	protected GameStatus status;
+	protected SQLConnection connection;
+	protected String[] rewardCommands = null;
 
 	@Override
 	public void onEnable(){
 		connection = new SQLConnection();
+		getServer().getPluginCommand("join").setExecutor(new JoinCommand());
 		lm("Version "+pdfile.getVersion()+" enabled.");
 	}
 
@@ -31,5 +34,9 @@ public class AEMHungerGames extends JavaPlugin{
 	 */
 	public void lm(String msg){
 		log.info("[AEMHungerGames] "+msg);
+	}
+	
+	public void setRewardCommands(String... commands){
+		this.rewardCommands = commands;
 	}
 }

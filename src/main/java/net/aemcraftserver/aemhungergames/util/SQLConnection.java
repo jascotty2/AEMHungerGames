@@ -8,15 +8,25 @@ import java.sql.Statement;
 
 public class SQLConnection{
 	private Connection c;
-	
-	public SQLConnection(){
-		
+	private String connectionString;
+	private String username;
+	private String password;
+
+	public SQLConnection(String host, int port, String database, String username, String password){
+		this.connectionString = "jdbc:mysql://"+host+":"+String.valueOf(port)+"/"+database;
 	}
-	
+
+	public SQLConnection(String host, String port, String database, String username, String password){
+		this.connectionString = "jdbc:mysql://"+host+":"+port+"/"+database;
+	}
+
+	public SQLConnection() {
+	}
+
 	public Connection getConnection(){
 		return this.c;
 	}
-	
+
 	/**
 	 * Attempt to connect this SQLConnection object instance to a specified database.
 	 * 
@@ -39,7 +49,25 @@ public class SQLConnection{
 			return false;
 		}
 	}
-	
+
+	public boolean connect(){
+		if(this.connectionString == null){
+			return false;
+		}else{
+			try{
+				Class.forName("com.mysql.jdbc.Driver");
+				this.c = DriverManager.getConnection(this.connectionString, this.username, this.password);
+				return true;
+			}catch(SQLException e){
+				e.printStackTrace();
+				return false;
+			}catch(ClassNotFoundException e){
+				e.printStackTrace();
+				return false;
+			}
+		}
+	}
+
 	public PreparedStatement statement(String q){
 		try {
 			return c.prepareStatement(q, Statement.RETURN_GENERATED_KEYS);
@@ -48,7 +76,7 @@ public class SQLConnection{
 			return null;
 		}
 	}
-	
+
 	public Statement statement(){
 		try{
 			return this.c.createStatement();
