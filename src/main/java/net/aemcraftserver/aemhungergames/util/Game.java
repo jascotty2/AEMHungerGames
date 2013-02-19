@@ -44,7 +44,15 @@ public class Game{
 			id++;
 		}
 	}
+	
+	public void setMaxPlayers(int i){
+		this.maxPlayers = i;
+	}
 
+	public int getMaxPlayers(){
+		return this.maxPlayers;
+	}
+	
 	public void setSpawn(int id, Vector v){
 		this.map.setSpawn(id, v);
 	}
