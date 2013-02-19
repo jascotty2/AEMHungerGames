@@ -34,6 +34,12 @@ public class ConfigurationHandler extends AEMHungerGames{
 			try{
 				config.load(configFile);
 				plugin.setRewardCommands(config.getStringList("rewardCommands").toArray(new String[config.getStringList("rewardCommands").size()]));
+				{
+					String[] s;
+					s = config.getString("spawn", "world").split(",");
+					plugin.spawnWorldName = s[0];
+					plugin.setSpawnLocation(s[1], s[2], s[3]);
+				}
 			}catch(FileNotFoundException ex){
 				Logger.getLogger("Minecraft").severe("An exception has occurred while AEMHungerGames was loading the configuration.");
 				ex.printStackTrace();
