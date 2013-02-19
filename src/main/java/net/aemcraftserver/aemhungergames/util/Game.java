@@ -16,6 +16,7 @@ public class Game{
 	List<String> players = new ArrayList<String>();
 	HashMap<String, Integer> points = new HashMap<String, Integer>();
 	Arena map = new Arena();
+	int maxPlayers = 0;
 
 	public void addPlayer(Player p){
 		addPlayer(p.getName());
@@ -23,6 +24,16 @@ public class Game{
 
 	public void addPlayer(String p){
 		this.players.add(p);
+	}
+
+	public boolean join(Player p){
+		if(players.size() < maxPlayers){
+			this.addPlayer(p);
+			int id = this.players.indexOf(p.getName());
+			p.teleport(new Location(map.getWorld(), map.getSpawn(id).getX(), map.getSpawn(id).getY(), map.getSpawn(id).getZ()));
+			return true;
+		}
+		return false;
 	}
 
 	public void startGame(){
