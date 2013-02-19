@@ -28,11 +28,21 @@ public class Game implements GameEvents{
 			id++;
 		}
 	}
-	
+
 	@Override
 	public void onGameEnd(){
 		//determine winner...
 		String winnerName = null;
+		int highestScore = -1;
+		for(String name: this.players){
+			int i = points.get(name);
+			if(i > highestScore){
+				highestScore = i;
+				winnerName = name;
+			}//else if(i == highestScore){
+//				handle tie (but how?)
+//			}
+		}
 		//reward winner...
 		for(String z: this.mainInstance.getRewardCommands()){
 			z = z.replaceFirst("/", "");//commands need to have no front / unless they're double slash commands like worldedit's //set, etc but then need one, not two
@@ -44,7 +54,7 @@ public class Game implements GameEvents{
 		}
 		//reset arena if needed(?)
 	}
-	
+
 	public void addPlayer(Player p){
 		addPlayer(p.getName());
 	}
@@ -56,7 +66,7 @@ public class Game implements GameEvents{
 	public void removePlayer(Player p){
 		this.removePlayer(p.getName());
 	}
-	
+
 	public void removePlayer(String playerName){
 		this.players.remove(this.players.indexOf(playerName));
 	}
@@ -78,7 +88,7 @@ public class Game implements GameEvents{
 		this.removePlayer(playerName);
 		//save stats
 	}
-	
+
 	public void setMaxPlayers(int i){
 		this.maxPlayers = i;
 	}
@@ -86,7 +96,7 @@ public class Game implements GameEvents{
 	public int getMaxPlayers(){
 		return this.maxPlayers;
 	}
-	
+
 	public void setSpawn(int id, Vector v){
 		this.map.setSpawn(id, v);
 	}
