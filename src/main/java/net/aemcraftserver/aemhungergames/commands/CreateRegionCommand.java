@@ -14,10 +14,10 @@ public class CreateRegionCommand implements CommandExecutor {
 			Player player = ((Player)sender);
 			if(args[0].equalsIgnoreCase("create") && player.hasPermission("aemhg.createregion")) {
 				if(args[2].equalsIgnoreCase("pos1")) {
-					RegionConfig.regions.set("regions." + player.getWorld().getName() + args[1] + ".P1", player.getLocation().toString());
+					RegionConfig.regions.set("regions." + args[1] + ".P1", player.getLocation().toString());
 				}
 				else if(args[2].equalsIgnoreCase("pos2")) {
-					RegionConfig.regions.set("regions." + player.getWorld().getName() + args[1] + ".P2", player.getLocation().toString());
+					RegionConfig.regions.set("regions." + args[1] + ".P2", player.getLocation().toString());
 				} else {
 					sender.sendMessage("Incorrect arguments");
 				}

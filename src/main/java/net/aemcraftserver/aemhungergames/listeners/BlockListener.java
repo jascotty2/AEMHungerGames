@@ -27,8 +27,8 @@ public class BlockListener implements Listener {
 		Location loc = event.getBlock().getLocation();
 		Set<String> regions = RegionConfig.regions.getConfigurationSection("Regions").getKeys(false);
 		for(String region : regions) {
-			Location p1 = toLocation(RegionConfig.regions.getString("regions." + event.getBlock().getWorld().getName() + region + ".P1"));
-			Location p2 = toLocation(RegionConfig.regions.getString("regions." + event.getBlock().getWorld().getName() + region + ".P2"));
+			Location p1 = toLocation(RegionConfig.regions.getString("regions." + region + ".P1"));
+			Location p2 = toLocation(RegionConfig.regions.getString("regions." + region + ".P2"));
 			
 			double maxX = (p1.getX() > p2.getX()) ? p1.getX() : p2.getX();
 			double minX = (p1.getX() < p2.getX()) ? p1.getX() : p2.getX();
