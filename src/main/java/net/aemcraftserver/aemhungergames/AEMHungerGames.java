@@ -2,9 +2,7 @@ package main.java.net.aemcraftserver.aemhungergames;
 
 import java.util.logging.Logger;
 
-import main.java.net.aemcraftserver.aemhungergames.commands.CreateRegionCommand;
 import main.java.net.aemcraftserver.aemhungergames.commands.JoinCommand;
-import main.java.net.aemcraftserver.aemhungergames.listeners.BlockListener;
 import main.java.net.aemcraftserver.aemhungergames.util.GameStatus;
 import main.java.net.aemcraftserver.aemhungergames.util.RegionConfig;
 import main.java.net.aemcraftserver.aemhungergames.util.SQLConnection;
@@ -23,9 +21,7 @@ public class AEMHungerGames extends JavaPlugin{
 	public void onEnable(){
 		connection = new SQLConnection();
 		getServer().getPluginCommand("join").setExecutor(new JoinCommand());
-		getCommand("aemregion").setExecutor(new CreateRegionCommand());
 		RegionConfig.createConfig();
-		getServer().getPluginManager().registerEvents(new BlockListener(this), this);
 		
 		lm("Version "+pdfile.getVersion()+" enabled.");
 	}
