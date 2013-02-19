@@ -7,6 +7,7 @@ import java.util.List;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
+import org.bukkit.util.Vector;
 
 import main.java.net.aemcraftserver.aemhungergames.AEMHungerGames;
 
@@ -25,11 +26,16 @@ public class Game{
 	}
 
 	public void startGame(){
+		int id = 0;
 		for(String z: players){
 			Player p = Bukkit.getServer().getPlayer(z);
-			p.teleport(new Location(map.getWorld(), map.getSpawn().getX(), map.getSpawn().getY(), map.getSpawn().getZ()));
+			p.teleport(new Location(map.getWorld(), map.getSpawn(id).getX(), map.getSpawn(id).getY(), map.getSpawn(id).getZ()));
+			id++;
 		}
-		//temporarily give players godmode or no? or should players spawn at random areas on the map?
+	}
+
+	public void setSpawn(int id, Vector v){
+		this.map.setSpawn(id, v);
 	}
 
 	public void endGame(){

@@ -11,14 +11,22 @@ import org.bukkit.util.Vector;
 
 public class Arena{
 	private World world = null;
-	private Vector spawnpoint = null;
+	private List<Vector> spawnpoints = null;
 
 	public World getWorld(){
 		return this.world;
 	}
 
-	public Vector getSpawn(){
-		return this.spawnpoint;
+	public Vector getSpawn(int id){
+		return this.spawnpoints.get(id);
+	}
+
+	public void setSpawn(int id, Vector v){
+		this.spawnpoints.set(id, v);
+	}
+
+	public void setSpawn(List<Vector> v){
+		this.spawnpoints = v;
 	}
 
 	public World pickRandom(){
