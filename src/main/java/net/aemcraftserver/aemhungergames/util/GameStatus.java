@@ -5,5 +5,6 @@ public enum GameStatus{
 	IDLE,
 	BUSY,
 	STOPPED,
-	ERRORED
+	ERROR,
+	READY
 }

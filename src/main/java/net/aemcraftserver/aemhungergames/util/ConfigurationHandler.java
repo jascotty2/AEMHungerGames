@@ -13,15 +13,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.YamlConfiguration;
 
-/**
- * Handles the AEMHungerGames configuration.
- * @version 1.3.27.27 (Final? Unless more configuration nodes come to be.)
- * @category Configuration
- * @since 1.0.1.3 (Announced as 1.0)
- * @author Dan | TheLunarFrog
- */
 public class ConfigurationHandler extends AEMHungerGames{
-
 	protected static YamlConfiguration config;
 	protected static File configFile;
 	AEMHungerGames plugin;
@@ -35,15 +27,7 @@ public class ConfigurationHandler extends AEMHungerGames{
 		}
 	}
 
-	public static void save(){
-		try{
-			config.save(configFile);
-		}catch(IOException e){
-			e.printStackTrace();
-		}
-	}
-
-	protected void loadConfig(){
+	public void loadConfig(){
 		configFile = new File(Bukkit.getServer().getPluginManager().getPlugin("AEMHungerGames").getDataFolder(), "config.yml");
 		if(configFile.exists()){
 			config = new YamlConfiguration();
@@ -75,7 +59,7 @@ public class ConfigurationHandler extends AEMHungerGames{
 		}
 	}
 
-	static private void copyFile(InputStream in, File out) throws Exception{
+	private void copyFile(InputStream in, File out) throws Exception{
 		InputStream fis = in;
 		FileOutputStream fos = new FileOutputStream(out);
 		try{
@@ -96,7 +80,7 @@ public class ConfigurationHandler extends AEMHungerGames{
 		}
 	}
 
-	protected ConfigurationHandler(AEMHungerGames plugin){
+	public ConfigurationHandler(AEMHungerGames plugin){
 		this.plugin = plugin;
 	}
 }

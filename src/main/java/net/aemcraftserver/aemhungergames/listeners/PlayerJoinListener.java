@@ -12,7 +12,6 @@ public class PlayerJoinListener implements Listener{
 
 	@EventHandler(priority=EventPriority.MONITOR)
 	public void onPlayerJoinEvent(PlayerJoinEvent evt){
-		this.plugin.activeGame.addPlayer(evt.getPlayer().getName());
 	}
 
 	public PlayerJoinListener(AEMHungerGames main){
