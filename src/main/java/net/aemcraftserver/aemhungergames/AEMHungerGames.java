@@ -5,6 +5,7 @@ import java.util.logging.Logger;
 import main.java.net.aemcraftserver.aemhungergames.commands.CreateRegionCommand;
 import main.java.net.aemcraftserver.aemhungergames.commands.JoinCommand;
 import main.java.net.aemcraftserver.aemhungergames.listeners.BlockListener;
+import main.java.net.aemcraftserver.aemhungergames.util.Game;
 import main.java.net.aemcraftserver.aemhungergames.util.GameStatus;
 import main.java.net.aemcraftserver.aemhungergames.util.RegionConfig;
 import main.java.net.aemcraftserver.aemhungergames.util.SQLConnection;
@@ -13,11 +14,12 @@ import org.bukkit.plugin.PluginDescriptionFile;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class AEMHungerGames extends JavaPlugin{
-	protected static Logger log = Logger.getLogger("Minecraft");
+	protected final static Logger log = Logger.getLogger("Minecraft");
 	protected PluginDescriptionFile pdfile;
 	protected GameStatus status;
 	protected SQLConnection connection;
 	protected String[] rewardCommands = null;
+	public Game activeGame = null;
 
 	@Override
 	public void onEnable(){
@@ -42,7 +44,7 @@ public class AEMHungerGames extends JavaPlugin{
 	public static void lm(String msg){
 		log.info("[AEMHungerGames] "+msg);
 	}
-	
+
 	public void setRewardCommands(String... commands){
 		this.rewardCommands = commands;
 	}
