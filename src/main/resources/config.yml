@@ -3,7 +3,7 @@ rewardCommands:
     - /give %player% 1 8
     - /deop %player%
 database:
-    host:
-    port:
-    username:
+    host: localhost
+    port: 3301
+    username: root
     password:
