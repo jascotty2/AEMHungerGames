@@ -1,0 +1,9 @@
+spawn: world,0,67,0
+rewardCommands:
+    - /give %player% 1 8
+    - /deop %player%
+database:
+    host:
+    port:
+    username:
+    password:
