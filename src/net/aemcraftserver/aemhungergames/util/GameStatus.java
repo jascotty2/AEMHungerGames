@@ -1,4 +1,4 @@
-package main.java.net.aemcraftserver.aemhungergames.util;
+package net.aemcraftserver.aemhungergames.util;
 
 public enum GameStatus{
 	IN_PROGRESS,
