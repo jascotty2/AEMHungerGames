@@ -14,6 +14,7 @@ public class SQLConnection {
 	private String connectionString;
 	private String username;
 	private String password;
+	private String table;
 
 	public SQLConnection(String host, int port, String database, String username, String password) {
 		this.connectionString = "jdbc:mysql://" + host + ":" + String.valueOf(port) + "/" + database;
@@ -41,14 +42,10 @@ public class SQLConnection {
 	 * @return Whether or not the connection attempt was successful.
 	 */
 	public boolean connect(String host, int port, String database, String un, String pw) {
-		try {
-			Class.forName("com.mysql.jdbc.Driver");
-			this.c = DriverManager.getConnection("jdbc:mysql://" + host + ":" + String.valueOf(port) + "/" + database, un, pw);
-			return true;
-		} catch (SQLException | ClassNotFoundException e) {
-			Logger.getAnonymousLogger().log(Level.SEVERE, "Error in SQLConnection.connect: ", e);
-			return false;
-		}
+		this.connectionString = "jdbc:mysql://" + host + ":" + String.valueOf(port) + "/" + database;
+		this.username = un;
+		this.password = pw;
+		return connect();
 	}
 
 	public boolean connect() {
@@ -58,6 +55,7 @@ public class SQLConnection {
 			try {
 				Class.forName("com.mysql.jdbc.Driver");
 				this.c = DriverManager.getConnection(this.connectionString, this.username, this.password);
+				this.c.setAutoCommit(true);
 				return true;
 			} catch (SQLException | ClassNotFoundException e) {
 				Logger.getAnonymousLogger().log(Level.SEVERE, "Error in SQLConnection.connect: ", e);
@@ -82,5 +80,33 @@ public class SQLConnection {
 			Logger.getAnonymousLogger().log(Level.SEVERE, "Error in SQLConnection.statement: ", e);
 			return null;
 		}
+	}
+
+	public void createTables() {
+		Statement s = this.statement();
+
+		try {
+			s.executeQuery("CREATE TABLE " + table + " ("
+					+ "id INT NOT NULL AUTO_INCREMENT,"
+					+ "playerName TEXT(16) NOT NULL,"
+					+ "kills INT NOT NULL,"
+					+ "deaths INT NOT NULL,"
+					+ "gamesPlayed INT NOT NULL"
+					+ "averageFinish DECIMAL NOT NULL"
+					+ "PRIMARY KEY (id));").close();
+		} catch (SQLException e) {
+			Logger.getAnonymousLogger().log(Level.SEVERE, "Error in SQLConnection.createTables: ", e);
+		}
+	}
+
+	public boolean checkTables() {
+		//if tables exist, return true
+		//else return false
+		try {
+			return c.getMetaData().getTables(null, null, table, null).next();
+		} catch (SQLException e) {
+			Logger.getAnonymousLogger().log(Level.SEVERE, "Error in SQLConnection.checkTables: ", e);
+		}
+		return false;
 	}
 }

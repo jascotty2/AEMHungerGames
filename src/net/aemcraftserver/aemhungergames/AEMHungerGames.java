@@ -1,11 +1,14 @@
 package net.aemcraftserver.aemhungergames;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 
 import net.aemcraftserver.aemhungergames.commands.CreateRegionCommand;
 import net.aemcraftserver.aemhungergames.listeners.BlockListener;
 import net.aemcraftserver.aemhungergames.listeners.PlayerQuitListener;
 import net.aemcraftserver.aemhungergames.util.Game;
+import net.aemcraftserver.aemhungergames.util.PlayerRecord;
 import net.aemcraftserver.aemhungergames.util.SQLConnection;
 
 import org.bukkit.Bukkit;
@@ -19,10 +22,12 @@ public class AEMHungerGames extends JavaPlugin {
 	protected SQLConnection connection = null;
 	protected String[] rewardCommands = null;
 	protected Location spawnLocation = null;
+	public List<PlayerRecord> playerRecords = new ArrayList<PlayerRecord>();
 	public Game[] activeGames = null;
 	public String spawnWorldName = null;
 	public String[] arenaWorlds = null;
 	public RegionManager regions = null;
+	public String table = null;
 
 	@Override
 	public void onEnable() {
